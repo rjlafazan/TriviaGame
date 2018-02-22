@@ -37,7 +37,7 @@
       </div>  
     </nav>
 
-    <div class="jumbotron">
+  <div class="jumbotron">
 	  <div class="container">
       <div class='row'>
         <div class="col-sm-6 text-center container-fluid">
@@ -47,7 +47,12 @@
         </div>
         <div class="col-sm-6 text-center container-fluid">
           <h5>Time Remaining: <div id="timerLength"></div></h5>
-          <p><div id="questionContainer"></div></p>
+            <h5>
+              <div id="questionContainer"></div>
+            </h5>
+            <p>
+              <div id="button-dump"></div>
+            </p>
         </div>
       </div>
       <br>
@@ -71,9 +76,34 @@
 	      </div>
 	    </div>
 	  </div>
-	</div><br>
+	</div>
 
-	<audio class="container-fluid text-center bg-dark" src="assets/audio/" autoplay loop controls></audio><br>
+  <div class="jumbotron">
+    <div class="container">
+      <div class='row'>
+        <div class="col-sm-6 text-center container-fluid">
+          <div id="resetButton"></div>
+        </div>
+        <div class="col-sm-6 text-center container-fluid">
+          <h5>Game Stats:</h5>
+          <div>Correct: <span id="correctCount"></span></div>
+          <div>Incorrect: <span id="incorrectCount"></span></div>
+          <div>Unanswered: <span id="unanswerCount"></span></div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+           <div class="container-fluid text-center">
+             
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+	<audio class="container-fluid text-center bg-dark" src="assets/audio/no_rest_for_the_wicked.mp3" autoplay loop controls></audio><br>
 
 
 <footer class="container-fluid text-center bg-dark">
