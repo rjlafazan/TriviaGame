@@ -67,7 +67,7 @@ var startTime = 30;
 // creates question and answer options
 
 	function questionator() {
-
+		restartTimer();
 		$('#button-dump').empty();
 		$('#questionContainer').empty();
 
@@ -88,19 +88,14 @@ var startTime = 30;
     	console.log(questions[i].answers);
     	console.log(questions[i].correctAnswer);
 
+    	$('#timerLength').text('30');
+
 	};
-
-// starts the first timer and sets start variables
-
-	$('#startButton').on('click', function(event) {
+// creates the timer
+	function countdown() {
 		var timeNumber = document.getElementById('timerLength');
-		timerInterval = setInterval(countdown, 1000);
-		i = 0;
-		console.log();
-
-		function countdown() {
 		    if (startTime === 0) {
-		        // clearInterval(timerInterval);
+		        clearInterval(timerInterval);
 		        timeUp();
 
 		    } else {
@@ -109,21 +104,34 @@ var startTime = 30;
 		    };
 		};
 
-		function timeUp() {
-		    console.log('Time Up');
-		    i++;
-		    unansweredCount++;
-		    $('#unanswerCount').text(unansweredCount);
-		    
-		};
+	function timeUp() {
+	    alert("Time Up! The answer is: " + questions[i].correctAnswer);
+	    i++;
+	    unansweredCount++;
+	    $('#unanswerCount').text(unansweredCount);
+	    clearInterval(timerInterval);
+		startTime = 30;
+	    
+	};
+// restarts the timer when the question is answered
+function restartTimer() {
+	timerInterval = setInterval(countdown, 1000);
+	};
+
+
+// starts the first timer and sets start variables
+
+	$('#startButton').on('click', function(event) {
+		// var timeNumber = document.getElementById('timerLength');
+		i = 0;
+		restartTimer();
 
 		questionator();
-		scoreSection();
 
 
 	});
 
-// click events for user answers
+// click events for answer chosen
 $('body').on('click', '.answer', function() {
 	console.log(this);
 
@@ -139,20 +147,20 @@ $('body').on('click', '.answer', function() {
 	function chooseAnswer(inputChoice, correctChoice) {
 
 		if (inputChoice === correctChoice) {
-			console.log('correct');
 			alert("Correct!");
 			i++;
 			correctAnswerCount++;
 			$('#correctCount').text(correctAnswerCount);
 			clearInterval(timerInterval);
+			startTime = 30;
 		} else if(inputChoice !== correctChoice) {
-			console.log('incorrect');
 			alert("Incorrect! The answer is: " + questions[i].correctAnswer);
 			i++;
 			incorrectAnswerCount++;
 			$('#incorrectCount').text(incorrectAnswerCount);
 			
 			clearInterval(timerInterval);
+			startTime = 30;
 		}
 
 		questionator();
@@ -171,7 +179,7 @@ function nextQuestion() {
             i++;
             setTimeout(startGame, 5000);
             clearInterval(timerInterval);
-            
+            startTime = 30;
 
         }
     };
